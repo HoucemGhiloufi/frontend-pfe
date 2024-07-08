@@ -1,0 +1,186 @@
+/* widgets.component.scss */
+.card {
+    padding: 20px;
+    border: 1px solid #ddd;
+    margin: 20px;
+  }
+  
+  h5 {
+    margin-top: 20px;
+  }
+  
+  p {
+    margin: 10px 0;
+  }
+  .policy-details-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+   
+  .policy-details-card {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    background-color: #fff;
+  }
+  .policy-container {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    width: 400px;
+    margin: 20px auto;
+    font-family: Arial, sans-serif;
+   
+    .policy-header {
+      background-color: #002b80;
+      color: white;
+      padding: 10px;
+      text-align: center;
+   
+      .policy-name {
+        font-size: 24px;
+        font-weight: bold;
+      }
+   
+      .policy-number {
+        font-size: 16px;
+        margin-top: 5px;
+      }
+    }
+   
+    .policy-status {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      background-color: #e6f7ff;
+   
+      .status-label {
+        font-weight: bold;
+      }
+   
+      .status-value {
+        color: white;
+        background-color: #00a693;
+        padding: 5px 10px;
+        border-radius: 4px;
+  &.en-vigueur {
+          background-color: #00a693;
+        }
+      }
+    }
+    .container {
+      display: flex;
+      justify-content: space-between;
+      padding: 20px;
+    }
+     
+    .left-panel {
+      width: 40%;
+    }
+     
+    .right-panel {
+      width: 55%;
+    }
+     
+    .policy-container {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-family: Arial, sans-serif;
+     
+      .policy-header {
+        background-color: #002b80;
+        color: white;
+        padding: 10px;
+        text-align: center;
+     
+        .policy-name {
+          font-size: 24px;
+          font-weight: bold;
+        }
+     
+        .policy-number {
+          font-size: 16px;
+          margin-top: 5px;
+        }
+      }
+     
+      .policy-status {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+        background-color: #e6f7ff;
+     
+        .status-label {
+          font-weight: bold;
+        }
+     
+        .status-value {
+          color: white;
+          background-color: #00a693;
+          padding: 5px 10px;
+          border-radius: 4px;
+    &.en-vigueur {
+            background-color: #00a693;
+          }
+        }
+      }
+     
+      .policy-details {
+        padding: 20px;
+     
+        p {
+          margin: 5px 0;
+        }
+     
+        strong {
+          display: inline-block;
+          width: 150px;
+        }
+      }
+    }
+     
+    .investment-container {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+     
+      h2 {
+        font-size: 24px;
+        margin-bottom: 10px;
+      }
+     
+      p {
+        margin: 5px 0;
+      }
+     
+      .chart-container {
+        margin-top: 20px;
+        h5 {
+          text-align: left;
+          width: 100%;
+        }
+        canvas {
+          width: 100% !important;
+          height: 400px !important;
+        }
+      }
+    }
+    .policy-details {
+      padding: 20px;
+   
+      p {
+        margin: 5px 0;
+      }
+   
+      strong {
+        display: inline-block;
+        width: 150px;
+      }
+    }
+  }
+  .p-card-body p {
+    margin: 5px 0;
+  }

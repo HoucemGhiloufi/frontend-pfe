@@ -1,0 +1,129 @@
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+<div class="card p-3">
+  <h5>Formulaire</h5>
+  <div class="row">
+    <div class="col-md-4">
+      <h5>Date d'effet</h5>
+      <p-calendar [showIcon]="true" inputId="icon" [(ngModel)]="effectiveDate"></p-calendar>
+    </div>
+    <div class="col-md-4">
+      <h5>Date de signature</h5>
+      <p-calendar [showIcon]="true" inputId="icon" [(ngModel)]="signatureDate"></p-calendar>
+    </div>
+    <div class="col-md-4">
+      <h5>Date de calcul</h5>
+      <p-calendar [showIcon]="true" inputId="icon" [(ngModel)]="calculationDate"></p-calendar>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="dropdown">Type d'avenant</label>
+        <p-dropdown inputId="dropdown" [options]="avenantTypes"  [(ngModel)]="endorsementType" optionLabel="name" class="ng-invalid ng-dirty"></p-dropdown>
+      </div>
+      <div class="form-group">
+        <label for="dropdown">Sous Type d'avenant</label>
+        <p-dropdown inputId="dropdown" [options]="sousavenantTypes" [(ngModel)]="endorsementSubType" optionLabel="name" class="ng-invalid ng-dirty"></p-dropdown>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="amount">Montant <span class="text-danger">*</span></label>
+        <div class="input-group">
+          <input type="text" class="form-control amount-input" id="amount" placeholder="5 000">
+          <div class="input-group-append">
+            <span class="input-group-text">EUR</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quittancement Element -->
+  <div class="card mt-4">
+    <h5>Quittancement</h5>
+    <div class="row">
+      <div class="col-md-6">
+        <p>Payer: Name 180073 First Name</p>
+        <p>ID: 0003931702</p>
+        <p>876100</p>
+      </div>
+      <div class="col-md-6 text-right">
+        <p>Date de naissance: 05/12/1975</p>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="paymentMode">Mode de paiement <span class="text-danger">*</span></label>
+      <p-dropdown 
+        id="paymentMode" 
+        inputId="paymentMode" 
+        [options]="paymentModes" 
+        [(ngModel)]="selectedPaymentMode" 
+        optionLabel="name" 
+        [autoDisplayFirst]="false" 
+        class="ng-invalid ng-dirty">
+      </p-dropdown>
+    </div>
+
+    <div class="form-group">
+      <label for="authCode">Code de l'autorisation <span class="text-danger">*</span></label>
+      <input type="text" id="authCode" class="form-control">
+    </div>
+  </div>
+
+  <!-- Champs personnalisés -->
+  <div class="card mt-4">
+    <h5>Données avancées</h5>
+    <div>
+      <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a class="nav-link active" data-toggle="tab" href="#fees">Frais</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="tab" href="#customFields">Champs personnalisés</a>
+        </li>
+      </ul>
+      <div class="tab-content">
+        <div id="fees" class="container tab-pane active"><br>
+          <h3>Champs personnalisés</h3>
+          <table class="table">
+            <tr>
+              <th>Nom</th>
+              <th>Valeur</th>
+            </tr>
+            <tr>
+              <td>Apporteur de Niveau 2 Manuel</td>
+              <td>
+                <p-dropdown [options]="manualLevel2BrokerOptions" [(ngModel)]="manualLevel2Broker" optionLabel="name"></p-dropdown>
+              </td>
+            </tr>
+            <tr>
+              <td>Apporteur de Niveau 2 Automatique</td>
+              <td>
+                <p-dropdown [options]="automaticLevel2BrokerOptions" [(ngModel)]="automaticLevel2Broker" optionLabel="name"></p-dropdown>
+              </td>
+            </tr>
+            <tr>
+              <td>Origine des fonds</td>
+              <td>
+                <p-dropdown [options]="fundsOriginOptions" [(ngModel)]="fundsOrigin" optionLabel="name"></p-dropdown>
+              </td>
+            </tr>
+            <tr>
+              <td>Tiers payeur</td>
+              <td>
+                <input type="text" class="form-control" [(ngModel)]="thirdPartyPayer">
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Form Submit Button -->
+  <form (ngSubmit)="onSubmit()">
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>

@@ -1,0 +1,38 @@
+<div *ngIf="loading">
+
+  <app-loading [loading]="loading"></app-loading>
+</div>
+<div>
+  <input type="text" [(ngModel)]="searchTerm" placeholder="Enter policy number">
+  <button (click)="search()">Rechercher</button>
+</div>
+
+<div *ngIf="filteredContracts.length > 0" class="contracts-table-container">
+  <table class="contracts-table">
+    <thead>
+      <tr>
+        <th>Numéro de Police</th>
+        <th>Nom du Produit</th>
+        <th>Nom du Titulaire</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let contract of filteredContracts">
+        <td><a [routerLink]="['/admin/widget', contract.policyNumber]">{{ contract.policyNumber }}</a></td>
+        <td>{{ contract.productName }}</td>
+        <td>{{ contract.holder.name }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div *ngIf="filteredRequests.length > 0" class="requests-container">
+  <div *ngFor="let item of filteredRequests" class="request-card">
+    <div class="request-header">
+      <span class="request-type">{{ item.endorsementType.label }}</span>
+      <span class="request-subtype">{{ item.endorsementSubType.label }}</span>
+    </div>
+    <div class="request-details">
+      <div class="request-date">{{ item.dateEffet }}</div>
+    </div>
+  </div>
+</div>

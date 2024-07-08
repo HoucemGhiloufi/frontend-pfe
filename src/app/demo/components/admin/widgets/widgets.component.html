@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Policy and Investment Details</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <div class="left-pane">
+      <div class="policy-container">
+        <div class="policy-header">
+          <div class="policy-name">{{productName}}</div>
+          <div class="policy-number">{{policyNumber}}</div>
+        </div>
+        <div class="policy-status">
+          <span class="status-label">Statut</span>
+          <span class="status-value en-vigueur">En vigueur</span>
+        </div>
+        <div class="policy-details">
+          <p><strong>Date d'effet:</strong> {{ effectiveDate }}</p>
+          <p><strong>Date du terme:</strong> {{ termDate }}</p>
+          <p><strong>Preneur:</strong> {{ partnerName }}</p>
+          <p><strong>Nom du produit:</strong> {{ productName }}</p>
+          <p><strong>Type de produit:</strong> {{ productTypeIdentifier }}</p>
+          <p><strong>Courtier:</strong> {{ holderName }}</p>
+          <p><strong>Type de prime:</strong> {{ premiumTypeIdentifier }}</p>
+          <p><strong>Périodicité de paiement:</strong> {{ paymentPeriodicityLabel }}</p>
+          <p><strong>Mode de paiement:</strong> {{ paymentModeIdentifier }}</p>
+          <p><strong>Prime annuelle:</strong> {{ currency }}</p>
+          <p><strong>Pays de taxation:</strong> {{ taxCountryLabel }}</p>
+          <p><strong>Devise:</strong> {{ currency }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="right-pane">
+      <div class="p-grid">
+        <div class="p-col-12">
+          <h2>Investment Details</h2>
+          <div class="p-card">
+            <div class="p-card-body">
+              <p><strong>Strategy Type:</strong> {{ investmentStrategyType }}</p>
+              <p><strong>Strategy Label:</strong> {{ investmentStrategyLabel }}</p>
+              <p><strong>Valuation Date:</strong> {{ investmentValuationDate }}</p>
+              <p><strong>Global Valuation:</strong> {{ investmentGlobalValuation }}</p>
+            </div>
+            <div class="card flex flex-column align-items-center">
+              <p-chart type="doughnut" [data]="pieData" [options]="pieOptions"></p-chart>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="p-grid">
+        <div class="p-col-12">
+          <h2>Endorsements</h2>
+          <p-table [value]="endorsements" [rows]="10" [paginator]="true" [loading]="loading" [rowGroupMode]="'rowspan'"
+            sortField="endorsementType.label" [groupRowsBy]="['endorsementType.label']" [sortMode]="'single'"
+            responsiveLayout="scroll" (onSort)="onSort()">
+            <ng-template pTemplate="header">
+              <tr>
+                <th pSortableColumn="endorsementType.label">Endorsement Type <p-sortIcon
+                    field="endorsementType.label"></p-sortIcon></th>
+                <th pSortableColumn="effectiveDate">Effective Date <p-sortIcon field="effectiveDate"></p-sortIcon></th>
+                <th pSortableColumn="status.label">Status <p-sortIcon field="status.label"></p-sortIcon></th>
+                <th>Action</th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
+              <tr>
+                <td>{{ rowData.endorsementType.label }}</td>
+                <td>{{ rowData.dateEffet | date:'shortDate' }}</td>
+                <td>{{ rowData.endorsementSubType?.label }}</td>
+                <td>
+                  <button pButton type="button" icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"></button>
+                  <button (click)="deleteAvenant(rowData._id)" pButton type="button" icon="pi pi-times"
+                    class="p-button-rounded p-button-danger"></button>
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
+
+          <form>
+            <button (click)="NavigateToAvenant()" class="btn btn-primary">Créer Avenant</button>
+          </form>
+        </div>
+      </div>
+      <div class="p-grid">
+        <div class="p-col-12">
+          <h2>Coverages</h2>
+          <div *ngFor="let coverage of coverages">
+            <div class="p-card">
+              <div class="p-card-body">
+                <p><strong>Label:</strong> {{ coverage.label }}</p>
+                <p><strong>Start Date:</strong> {{ coverage.startDate }}</p>
+                <p><strong>End Date:</strong> {{ coverage.endDate }}</p>
+                <p><strong>Capital:</strong> {{ coverage.capital }}</p>
+                <div *ngFor="let person of coverage.insuredPersons">
+                  <p><strong>Insured Person:</strong> {{ person.name }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
